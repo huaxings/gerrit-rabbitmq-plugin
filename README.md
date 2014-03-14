@@ -16,6 +16,8 @@ Published events are the same as Gerrit stream evnets.
 
 This plugin works on Gerrit 2.8 or later.
 
+*NOTE*: Here is `dev` branch. This is available on master in gerrit. Supported Buck build only.
+
 About Buck
 ---------------------
 
@@ -23,7 +25,7 @@ About Buck
 you need to setup it referring [Building with Buck] in gerrit documentation.
 
 [Buck]: http://facebook.github.io/buck/
-[Building with Buck]: https://gerrit-documentation.storage.googleapis.com/Documentation/2.8.2/dev-buck.html
+[Building with Buck]: https://gerrit-documentation.storage.googleapis.com/Documentation/2.8.3/dev-buck.html
 
 
 Environments
@@ -47,27 +49,10 @@ To build plugin with maven.
 
 To build plugin with buck
 
-    git clone https://gerrit.googlesource.com/gerrit -b v2.8.3
+    git clone https://gerrit.googlesource.com/gerrit
     ln -s $(pwd) gerrit/plugins/rabbitmq
     cd gerrit
     buck build plugins/rabbitmq:rabbitmq
-
-Using another version API
---------------------------
-
-* For `maven`
-
-Now avaliable for Gerrit 2.8.3 only. If you want to use it on another version of Gerrit, please try the below.
-
-    mvn package -DGerrit-ApiVersion=2.8
-
-* For `buck`
-
-After clone gerrit, you can checkout specified version.
-
-    git checkout -b 2.8 refs/tags/v2.8
-
-*NOTE*: If you want to build on master, please switch `dev` branch in this repository.
 
 Reference
 ---------------------
