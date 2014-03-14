@@ -3,6 +3,6 @@ jdk:
   - oraclejdk7
   - openjdk7
 
-before_build: ./script/before_build.sh
+before_script: ./script/before_build.sh
 
 script: ./script/build.sh
