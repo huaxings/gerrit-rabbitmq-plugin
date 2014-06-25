@@ -4,7 +4,7 @@ gerrit-rabbitmq-plugin: Gerrit event publish plugin via RabbitMQ
 * Author: rinrinne a.k.a. rin_ne
 * Repository: http://github.com/rinrinne/gerrit-rabbitmq-plugin
 
-[![Build Status](https://travis-ci.org/rinrinne/gerrit-rabbitmq-plugin.png?branch=dev)](https://travis-ci.org/rinrinne/gerrit-rabbitmq-plugin)
+[![Build Status](https://travis-ci.org/rinrinne/gerrit-rabbitmq-plugin.png?branch=dev-1.0)](https://travis-ci.org/rinrinne/gerrit-rabbitmq-plugin)
 
 Synopsis
 ----------------------
@@ -16,7 +16,7 @@ Published events are the same as Gerrit stream evnets.
 
 This plugin works on Gerrit 2.8 or later.
 
-*NOTE*: Here is `dev` branch. This is available on master in gerrit. Supported Buck build only.
+*NOTE*: Here is `dev-1.0` branch. This is available on master in gerrit. Supported Buck build only.
 
 About Buck
 ---------------------
