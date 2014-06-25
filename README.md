@@ -68,7 +68,7 @@ After clone gerrit, you can checkout specified version.
 
     git checkout -b 2.8 refs/tags/v2.8
 
-*NOTE*: If you want to build on master, please switch `dev` branch in this repository.
+*NOTE*: If you want to build on master, please switch `dev-1.0` branch in this repository.
 
 Reference
 ---------------------
