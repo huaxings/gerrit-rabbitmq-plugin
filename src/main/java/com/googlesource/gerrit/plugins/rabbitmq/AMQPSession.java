@@ -52,6 +52,9 @@ public class AMQPSession implements ShutdownListener {
 
   private Channel getPublishChannel() {
     Channel pubCh = null;
+    if (connection == null) {
+      connect();
+    }
     if (connection != null) {
       try {
         pubCh = connection.createChannel();
