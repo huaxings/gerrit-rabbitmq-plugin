@@ -15,7 +15,7 @@
 package com.googlesource.gerrit.plugins.rabbitmq.message;
 
 import com.google.gerrit.extensions.events.LifecycleListener;
-import com.google.gerrit.server.events.ChangeEvent;
+import com.google.gerrit.server.events.Event;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -78,7 +78,7 @@ public class MessagePublisher implements Publisher, LifecycleListener {
   }
 
   @Override
-  public void onChangeEvent(ChangeEvent event) {
+  public void onEvent(Event event) {
     if (available && session.isOpen()) {
       session.publish(gson.toJson(event));
     }
