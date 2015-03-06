@@ -14,8 +14,8 @@
 
 package com.googlesource.gerrit.plugins.rabbitmq.worker;
 
-import com.google.gerrit.common.ChangeListener;
-import com.google.gerrit.server.events.ChangeEvent;
+import com.google.gerrit.common.EventListener;
+import com.google.gerrit.server.events.Event;
 import com.google.inject.Singleton;
 
 import com.googlesource.gerrit.plugins.rabbitmq.message.Publisher;
@@ -27,7 +27,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 @Singleton
-public class DefaultChangeWorker implements ChangeListener, ChangeWorker {
+public class DefaultChangeWorker implements EventListener, ChangeWorker {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DefaultChangeWorker.class);
 
@@ -54,9 +54,9 @@ public class DefaultChangeWorker implements ChangeListener, ChangeWorker {
   }
 
   @Override
-  public void onChangeEvent(ChangeEvent event) {
+  public void onEvent(Event event) {
     for (Publisher publisher : publishers) {
-      publisher.onChangeEvent(event);
+      publisher.onEvent(event);
     }
   }
 }

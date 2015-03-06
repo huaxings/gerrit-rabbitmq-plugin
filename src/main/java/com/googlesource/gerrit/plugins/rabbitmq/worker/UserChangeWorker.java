@@ -14,7 +14,7 @@
 
 package com.googlesource.gerrit.plugins.rabbitmq.worker;
 
-import com.google.gerrit.common.ChangeHooks;
+import com.google.gerrit.common.EventSource;
 import com.google.gerrit.reviewdb.client.Account;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gerrit.server.CurrentUser;
@@ -39,7 +39,7 @@ public class UserChangeWorker implements ChangeWorker {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserChangeWorker.class);
 
-  private final ChangeHooks hooks;
+  private final EventSource source;
   private final WorkQueue workQueue;
   private final AccountResolver accountResolver;
   private final IdentifiedUser.GenericFactory userFactory;
@@ -49,14 +49,14 @@ public class UserChangeWorker implements ChangeWorker {
 
   @Inject
   public UserChangeWorker(
-      ChangeHooks hooks,
+      EventSource source,
       WorkQueue workQueue,
       AccountResolver accountResolver,
       IdentifiedUser.GenericFactory userFactory,
       ThreadLocalRequestContext threadLocalRequestContext,
       PluginUser pluginUser,
       SchemaFactory<ReviewDb> schemaFactory) {
-    this.hooks = hooks;
+    this.source = source;
     this.workQueue = workQueue;
     this.accountResolver = accountResolver;
     this.userFactory = userFactory;
@@ -111,7 +111,7 @@ public class UserChangeWorker implements ChangeWorker {
           }
 
           IdentifiedUser user = userFactory.create(userAccount.getId());
-          hooks.addChangeListener(publisher, user);
+          source.addEventListener(publisher, user);
           LOGGER.info("Listen events as : {}", userName);
         } catch (OrmException e) {
           LOGGER.error("Could not query database for listenAs", e);
@@ -129,7 +129,7 @@ public class UserChangeWorker implements ChangeWorker {
 
   @Override
   public void removePublisher(final Publisher publisher) {
-    hooks.removeChangeListener(publisher);
+    source.removeEventListener(publisher);
   }
 
   @Override
